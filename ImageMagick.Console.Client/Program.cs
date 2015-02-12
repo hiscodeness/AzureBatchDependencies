@@ -75,8 +75,7 @@ namespace ImageMagick.Console.Client
             {
                 var userInputFilePaths = new List<UserFile>(new[]
                 {
-                    new UserFile(client, @"C:\Users\Jussi\Desktop\brain.nii"),
-                    new UserFile(client, "resliced.nii")
+                    new UserFile(client, @"C:\Users\Jussi\Desktop\brain.nii")
                 });
 
                 // Creates a list of Userfiles needed for submitting a job.

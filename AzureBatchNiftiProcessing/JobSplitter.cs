@@ -34,7 +34,7 @@ namespace AzureBatchNiftiProcessing
             var skullStripTask = new TaskSpecifier
             {
                 TaskId = TaskIds.SkullStrip,
-                RequiredFiles = new []{myFileSpecifier},
+                RequiredFiles = new IFileSpecifier[]{myFileSpecifier}.ToList(),
                 Parameters = job.Parameters,
                 DependsOn = TaskDependency.OnId(TaskIds.Reslice)
             };
