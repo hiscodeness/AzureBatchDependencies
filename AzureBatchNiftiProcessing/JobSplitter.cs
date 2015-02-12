@@ -26,28 +26,15 @@ namespace AzureBatchNiftiProcessing
                 Parameters = job.Parameters,                
             };
 
-            var myFileSpecifier = new MyFileSpecifier
-            {
-                Name = "resliced.nii"
-            };
-
             var skullStripTask = new TaskSpecifier
             {
                 TaskId = TaskIds.SkullStrip,
-                RequiredFiles = new []{myFileSpecifier},
+                RequiredFiles = job.Files.Skip(1).ToList(),
                 Parameters = job.Parameters,
                 DependsOn = TaskDependency.OnId(TaskIds.Reslice)
             };
 
             return new List<TaskSpecifier> {reorientTask, skullStripTask};
         }
-    }
-
-    public class MyFileSpecifier : IFileSpecifier
-    {
-        public string Name { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string OriginalPath { get; set; }
-        public string Hash { get; set; }
     }
 }
